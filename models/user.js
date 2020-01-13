@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(255)
     },
     roles: {
-      type: DataTypes.STRING(50)
+      type: DataTypes.ENUM("admin", "seller", "buyer")
     },
     firstname: {
       type: DataTypes.STRING(255)
@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: "CASCADE",
       foreignKey: "user_id"
     });
-    
+
   };
   return user;
 };
