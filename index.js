@@ -9,6 +9,7 @@ const app = express();
 const shopService = require('./services/shop')
 const sericeService = require('./services/service')
 // const userService = require('./services/user');
+const shopPicService = require('./services/shopPic')
 
 app.use(fileUpload());
 
@@ -25,6 +26,7 @@ require('./config/passport/passport')
 db.sequelize.sync({ force: false }).then(() => {
   shopService(app, db)
   sericeService(app, db)
+  shopPicService(app,db)
 
   app.get('/protected', passport.authenticate('jwt', { session: false }),
     function (req, res) {
