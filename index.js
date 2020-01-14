@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 require('./config/passport/passport')
 
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({ force: false }).then(() => {
   shopService(app, db)
   sericeService(app, db)
   shopPicService(app,db)
