@@ -5,5 +5,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
+  shopPic.associate = models => {
+    shopPic.belongsTo(models.shop, { onDelete: "CASCADE", foreignKey: "shop_id" });
+    
+  };
+
   return shopPic;
 };

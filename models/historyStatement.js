@@ -35,5 +35,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
+  historyStatement.associate = models => {
+    historyStatement.belongsTo(models.shop, {
+      onDelete: "CASCADE",
+      foreignKey: "shop_id"
+    });
+    
+  };
+
   return historyStatement;
 };
