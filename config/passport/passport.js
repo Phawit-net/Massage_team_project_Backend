@@ -58,7 +58,7 @@ passport.use(
           },
         }).then(user => {
           if (user === null) {
-            return done(null, false, { message: 'bad username' });
+            return done(null, false, { message: 'username or password is invalid' });
           }
           console.log(user.password)
           bcrypt.compare(password, user.password, function (err, response) {
@@ -68,8 +68,8 @@ passport.use(
               done(err)
             }
             if (response !== true) {
-              console.log('passwords do not match');
-              return done(null, false, { message: 'passwords do not match' });
+              console.log('username or password is invalid');
+              return done(null, false, { message: 'username or password is invalid' });
             }
             console.log('user found & authenticated');
             return done(null, user);
