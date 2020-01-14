@@ -27,6 +27,8 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: "CASCADE",
       foreignKey: "service_id"
     });
+
+    service.belongsTo(models.shop, { onDelete: "CASCADE", foreignKey: "shop_id" });
   };
   return service;
 };
