@@ -24,8 +24,8 @@ module.exports=(app,db)=>{
                 }).then(user => {
                     const token = jwt.sign({
                         id: user.id,
-                        role: user.role,
-                        name: `${user.firstname}`,
+                        role: user.roles,
+                        name: user.firstname,
                     }, config.jwtOptions.secretOrKey, {
                         expiresIn: 3600,
                     });
