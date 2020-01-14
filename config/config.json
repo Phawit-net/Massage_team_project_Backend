@@ -1,26 +1,24 @@
 {
   "development": {
     "username": "root",
-    "password": "atiwat2536",
+    "password": "Xialmiao1.",
     "database": "massage_dev",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "operatorsAliases": false
+    "salt_length": 12
   },
   "test": {
     "username": "root",
     "password": null,
     "database": "database_test",
     "host": "127.0.0.1",
-    "dialect": "mysql",
-    "operatorsAliases": false
+    "dialect": "mysql"
   },
   "production": {
     "username": "root",
     "password": null,
     "database": "database_production",
     "host": "127.0.0.1",
-    "dialect": "mysql",
-    "operatorsAliases": false
+    "dialect": "mysql"
   }
 }
