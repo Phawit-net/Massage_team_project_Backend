@@ -10,4 +10,15 @@ module.exports = (app, db) => {
             })
     })
 
+    app.get('/servicesDetail',
+        (req, res) => {
+            db.service.findOne({
+                where: { id: req.query.id },
+                include: [{ model: db.shop }]
+            })
+                .then(result => {
+                    res.send(result)
+                })
+        })
+
 }

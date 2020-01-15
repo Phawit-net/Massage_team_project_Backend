@@ -7,10 +7,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.FLOAT(2)
     },
     startTime: {
-      type: DataTypes.FLOAT(2)
+      type: DataTypes.TIME
     },
     endTime: {
-      type: DataTypes.FLOAT(2)
+      type: DataTypes.TIME
     },
     date: {
       type: DataTypes.DATE
