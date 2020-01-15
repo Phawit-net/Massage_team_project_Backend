@@ -66,7 +66,7 @@ module.exports = (app, db) => {
                     const pictureName = `${new Date().getTime()}${countImage}.jpeg`;
                     picture.mv(
                       `./image/${shopname}/${req.body.serviceName}/` +
-                        pictureName
+                      pictureName
                     );
                     if (countImage == 1) {
                       db.service
@@ -104,4 +104,15 @@ module.exports = (app, db) => {
       }
     }
   );
+
+  app.get('/servicesDetail',
+    (req, res) => {
+      db.service.findOne({
+        where: { id: req.query.id },
+        include: [{ model: db.shop }]
+      })
+        .then(result => {
+          res.send(result)
+        })
+    })
 };
