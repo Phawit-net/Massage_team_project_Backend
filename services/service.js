@@ -29,8 +29,9 @@ module.exports = (app, db) => {
           .findOne({ where: { user_id: req.user.id } })
           .then(async result => {
             shopname = result.shopName;
-            
+
             if (!req.files) {
+              console.log("NO file");
               res.send({
                 status: false,
                 message: "No file uploaded"
@@ -45,7 +46,7 @@ module.exports = (app, db) => {
                   price: price
                 })
                 .then(async result => {
-                  dataImages.push(result)
+                  dataImages.push(result);
                   // Create folder path
                   await fs.mkdir(
                     `image/${shopname}/${req.body.serviceName}`,
@@ -56,7 +57,11 @@ module.exports = (app, db) => {
                   );
 
                   let countImage = 1;
-                  const pictures = req.files.serviceProfilePic;
+                  let pictures = req.files.serviceProfilePic;
+                  if (!pictures.length) {
+                    pictures = [req.files.serviceProfilePic];
+                  }
+
                   pictures.forEach(picture => {
                     const pictureName = `${new Date().getTime()}${countImage}.jpeg`;
                     picture.mv(
@@ -71,7 +76,7 @@ module.exports = (app, db) => {
                         )
                         .catch(err => console.error(err.message));
                     }
-                    console.log(result.id)
+                    // console.log(result.id)
                     countImage++;
                     let pictureSize = picture.size;
                     let dataImage = { name: pictureName, pictureSize };
@@ -87,7 +92,10 @@ module.exports = (app, db) => {
                     data: dataImages
                   });
                 })
-                .catch(err => res.status(401).send({ message: err.message }));
+                .catch(err => {
+                  console.log(err);
+                  res.status(401).send({ message: err.message });
+                });
             }
           })
           .catch(err => res.status(401).send({ message: err.message }));
