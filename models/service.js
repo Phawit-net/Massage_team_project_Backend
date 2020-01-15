@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT
     },
     serviceProfilePic: {
-      type: DataTypes.STRING(50)
+      type: DataTypes.STRING(255)
     },
     time: {
       type: DataTypes.INTEGER

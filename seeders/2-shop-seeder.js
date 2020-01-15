@@ -12,7 +12,7 @@ module.exports = {
         Unlike some other therapies, you will feel refreshed and energized after a Thai massage, rather than sedated and lethargic. \
         Our Thai Therapists have been trained at the world famous “Wat Poh” academy at the Royal palace in Bangkok and \
         therefore we  trust  you will have  a wonderful experience of royal thai massage in the modern and busy City of London.",
-        shopProfilePic: "",
+        shopProfilePic: "https://media.wired.com/photos/598e35994ab8482c0d6946e0/master/w_2560%2Cc_limit/phonepicutres-TA.jpg",
         shopAccountNo: "",
         shopAccountName: "",
         createdAt: new Date(),

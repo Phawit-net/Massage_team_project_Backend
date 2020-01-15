@@ -51,7 +51,7 @@ module.exports = (app, db) => {
         res.status(400).json()
       })
   })
-  // req.params.keyword
+
   app.get('/searchShop', (req, res) => {
     db.shop.findAll({
       offset: (req.query.page - 1) * 3,
@@ -69,5 +69,22 @@ module.exports = (app, db) => {
         res.status(404).json()
       })
   })
+
+  app.get('/shop', (req, res) => {
+    db.shop.findOne({
+      where: { id: req.query.id },
+      include: [{
+        model: db.service,
+      }],
+    })
+      .then((result) => {
+        res.status(200).json(result)
+      })
+      .catch((err) => {
+        res.status(400).json(err)
+      })
+  })
+
+
 
 }
