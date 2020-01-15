@@ -11,7 +11,7 @@ module.exports = {
         Together these actions result in a comprehensive full body treatment that relieves muscular tension, improves circulation, \
         boosts the immune system and balances the body energetically.Thai Yoga Massage is performed on a mat on the floor; both client \
         and practitioner are dressed in comfortable clothing allowing ease of movement and flexibility.",
-        serviceProfilePic: "",
+        serviceProfilePic: "https://cdn.spafinder.com/2015/10/thai-massage-1.jpg",
         time: 2,
         price: 114,
         createdAt: new Date(),
