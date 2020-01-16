@@ -45,17 +45,20 @@ module.exports = (app, db) => {
                   time: time,
                   price: price
                 })
-                .then(async result => {
+                .then(result => {
                   dataImages.push(result);
                   // Create folder path
-                  await fs.mkdir(
-                    `image/${shopname}/${req.body.serviceName}`,
-                    { recursive: true },
-                    err => {
-                      if (err) throw err;
-                    }
-                  );
-
+                  if (
+                    !fs.existsSync(`image/${shopname}/${req.body.serviceName}`)
+                  ) {
+                    fs.mkdirSync(
+                      `image/${shopname}/${req.body.serviceName}`,
+                      { recursive: true },
+                      err => {
+                        if (err) throw err;
+                      }
+                    );
+                  }
                   let countImage = 1;
                   let pictures = req.files.serviceProfilePic;
                   if (!pictures.length) {
@@ -63,9 +66,9 @@ module.exports = (app, db) => {
                   }
 
                   pictures.forEach(picture => {
-                    const pictureName = `${new Date().getTime()}${countImage}.jpeg`;
+                    const pictureName = `${shopname}/${req.body.serviceName}/${new Date().getTime()}${countImage}.jpeg`;
                     picture.mv(
-                      `./image/${shopname}/${req.body.serviceName}/` +
+                      `./image/` +
                         pictureName
                     );
                     if (countImage == 1) {

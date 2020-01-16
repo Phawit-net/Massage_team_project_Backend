@@ -15,7 +15,7 @@ const shopPicService = require("./services/shopPic");
 
 app.use(fileUpload({ createParentPath: true }));
 
-app.use(express.static("upload"));
+app.use(express.static('image'));
 
 app.use(passport.initialize());
 app.use(cors());
