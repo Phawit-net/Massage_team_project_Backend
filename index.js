@@ -35,6 +35,8 @@ db.sequelize.sync({ alter: true }).then(() => {
 
   historyStatementService(app,db)
 
+  historyStatementService(app,db)
+
   app.get('/protected', passport.authenticate('jwt', { session: false }),
     function (req, res) {
       res.send(req.user);
