@@ -68,7 +68,7 @@ module.exports = (app, db) => {
                   pictures.forEach(picture => {
                     const pictureName = `${shopname}/${req.body.serviceName}/${new Date().getTime()}${countImage}.jpeg`;
                     picture.mv(
-                      `./image/${shopname}/${req.body.serviceName}/` +
+                      `./image/` +
                       pictureName
                     );
                     if (countImage == 1) {
