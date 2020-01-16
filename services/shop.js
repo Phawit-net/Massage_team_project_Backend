@@ -22,7 +22,7 @@ module.exports = (app, db) => {
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
       db.shop
-        .findOne({ where: { where: { id: req.user.id } } })
+        .findOne({  where: { id: req.user.id } })
         .then(result => {
           res.status(201).json(result);
         })
