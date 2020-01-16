@@ -12,6 +12,7 @@ const sericeService = require('./services/service')
 const userService = require('./services/user')
 
 const shopPicService = require('./services/shopPic')
+const historyStatementService =require('./services/historyStatement')
 
 app.use(fileUpload());
 
@@ -32,6 +33,8 @@ db.sequelize.sync({ force: false }).then(() => {
 
   userService(app,db)
   shopPicService(app,db)
+
+  historyStatementService(app,db)
 
   app.get('/protected', passport.authenticate('jwt', { session: false }),
     function (req, res) {
