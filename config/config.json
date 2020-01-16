@@ -1,7 +1,11 @@
 {
   "development": {
     "username": "root",
+<<<<<<< HEAD
     "password": "123456",
+=======
+    "password": "atiwat2536",
+>>>>>>> feature_ice
     "database": "massage_dev",
     "host": "127.0.0.1",
     "dialect": "mysql",
