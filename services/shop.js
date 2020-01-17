@@ -22,9 +22,32 @@ module.exports = (app, db) => {
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
       db.shop
-        .findOne({  where: { id: req.user.id } })
+        .findOne({ where: { id: req.user.id } })
         .then(result => {
           res.status(201).json(result);
+        })
+        .catch(err => {
+          res.status(400).json();
+        });
+    }
+  );
+  app.get(
+    "/getShopUserUsage",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+      db.historyStatement
+        .findAll({
+          attributes: [
+            "shopName",
+            [Sequelize.fn("count", Sequelize.col("shopName")), "count"]
+          ],
+          where:{user_id:req.user.id},
+          group: ["shopName"],
+          raw: true
+        })
+        .then(result => {
+          console.log(result)
+          res.status(201).send(result);
         })
         .catch(err => {
           res.status(400).json();
@@ -103,7 +126,7 @@ module.exports = (app, db) => {
         res.status(400).json();
       });
   });
-  
+
   app.get("/shops/:sid", (req, res) => {
     db.shop
       .findAll({
@@ -123,8 +146,7 @@ module.exports = (app, db) => {
         res.status(400).json();
       });
   });
-  
-  
+
   app.get("/shop", (req, res) => {
     db.shop
       .findOne({
@@ -142,8 +164,4 @@ module.exports = (app, db) => {
         res.status(400).json(err);
       });
   });
-  
-
 };
-
-
