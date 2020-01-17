@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     status: {
       type: DataTypes.STRING(50),
       validate:{
-        isIn:[["waitingApprove", "Approve", "Approve30%"]]
+        isIn:[["waitingApprove", "Approve", "Approve30%","Reject"]]
       }
     },
     paymentMethod: {
@@ -42,6 +42,10 @@ module.exports = (sequelize, DataTypes) => {
     historyStatement.belongsTo(models.shop, {
       onDelete: "CASCADE",
       foreignKey: "shop_id"
+    });
+    historyStatement.belongsTo(models.user, {
+      onDelete: "CASCADE",
+      foreignKey: "user_id"
     });
     
   };
