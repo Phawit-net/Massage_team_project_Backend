@@ -12,7 +12,7 @@ module.exports = {
         Unlike some other therapies, you will feel refreshed and energized after a Thai massage, rather than sedated and lethargic. \
         Our Thai Therapists have been trained at the world famous “Wat Poh” academy at the Royal palace in Bangkok and \
         therefore we  trust  you will have  a wonderful experience of royal thai massage in the modern and busy City of London.",
-        shopProfilePic: "https://media.wired.com/photos/598e35994ab8482c0d6946e0/master/w_2560%2Cc_limit/phonepicutres-TA.jpg",
+        shopProfilePic: "nuadthai/NuadThaiLogo.jpeg",
         shopAccountNo: "",
         shopAccountName: "",
         createdAt: new Date(),
@@ -26,7 +26,7 @@ module.exports = {
         Feel the stress-relieving touch, by well-trained and experienced therapists\
         From always-clean bedsheet to the natural herbs and oil used on your skin, we only use natural products of highest quality.\
         All Let's Relax Spa customers are welcomed with Thai herbal drink and end with a delightful taste of Thai snacks",
-        shopProfilePic: "",
+        shopProfilePic: "letsrelaxspa/LetsRelaxSpaLogo.jpeg",
         shopAccountNo: "",
         shopAccountName: "",
         createdAt: new Date(),
