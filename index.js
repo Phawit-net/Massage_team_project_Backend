@@ -11,11 +11,12 @@ const sericeService = require("./services/service");
 // const userService = require('./services/user');
 const userService = require("./services/user");
 
-const shopPicService = require("./services/shopPic");
+const shopPicService = require('./services/shopPic')
+const historyStatementService =require('./services/historyStatement')
 
 app.use(fileUpload({ createParentPath: true }));
 
-app.use(express.static('image'));
+app.use(express.static("image"));
 
 app.use(passport.initialize());
 app.use(cors());
@@ -25,17 +26,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 require("./config/passport/passport");
 
-db.sequelize.sync({ force: false }).then(() => {
+db.sequelize.sync({ alter: true }).then(() => {
   shopService(app, db);
   sericeService(app, db);
 
   userService(app, db);
   shopPicService(app, db);
 
-  app.get(
-    "/protected",
-    passport.authenticate("jwt", { session: false }),
-    function(req, res) {
+  historyStatementService(app,db)
+
+  historyStatementService(app,db)
+
+  app.get('/protected', passport.authenticate('jwt', { session: false }),
+    function (req, res) {
       res.send(req.user);
     }
   );

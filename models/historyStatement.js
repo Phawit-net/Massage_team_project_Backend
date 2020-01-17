@@ -7,16 +7,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.FLOAT(2)
     },
     startTime: {
-      type: DataTypes.TIME
+      type: DataTypes.STRING(20)
     },
     endTime: {
-      type: DataTypes.TIME
+      type: DataTypes.STRING(20)
     },
     date: {
-      type: DataTypes.DATE
+      type: DataTypes.STRING(20)
     },
     status: {
-      type: DataTypes.ENUM("waitingApprove", "Approve", "Approve30%")
+      type: DataTypes.STRING(50),
+      validate:{
+        isIn:[["waitingApprove", "Approve", "Approve30%"]]
+      }
     },
     paymentMethod: {
       type: DataTypes.ENUM("pay30%", "payFullPrice")
