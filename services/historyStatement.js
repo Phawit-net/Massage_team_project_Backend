@@ -1,56 +1,63 @@
-const fs = require("fs")
-const passport = require('passport');
+const fs = require("fs");
+const passport = require("passport");
 module.exports = (app, db) => {
-  app.post('/historystatement', passport.authenticate('jwt', { session: false }),
-    function (req, res) {
+  app.post(
+    "/historystatement",
+    passport.authenticate("jwt", { session: false }),
+    function(req, res) {
       if (!req.files) {
         res.send({
           status: false,
-          message: 'No file uploaded'
-        })
+          message: "No file uploaded"
+        });
       } else {
-
         if (!fs.existsSync(`image/${req.body.shopname}/payment`)) {
-          fs.mkdirSync(`image/${req.body.shopname}/payment`,
+          fs.mkdirSync(
+            `image/${req.body.shopname}/payment`,
             { recursive: true },
-            err => { if (err) throw err })
+            err => {
+              if (err) throw err;
+            }
+          );
         }
-        const paymentphoto = req.files.paymentphoto
-        const paymentphotoname = `${(new Date()).getTime()}.jpeg`;
-        paymentphoto.mv(`image/${req.body.shopname}/payment/${paymentphotoname}`)
+        const paymentphoto = req.files.paymentphoto;
+        const paymentphotoname = `${new Date().getTime()}.jpeg`;
+        paymentphoto.mv(
+          `image/${req.body.shopname}/payment/${paymentphotoname}`
+        );
 
-        db.historyStatement.create({
-          numberOfUser: req.body.numberofuser,
-          price: req.body.price,
-          startTime: req.body.starttime,
-          endTime: req.body.endtime,
-          date: req.body.date,
-          status: "waitingApprove",
-          paymentMethod: req.body.paymentmethod,
-          attend: "No",
-          paymentImage: `http://localhost:8080/${req.body.shopname}/payment/${paymentphotoname}`,
-          serviceName: req.body.servicename,
-          shopName: req.body.shopname,
-          service_id: req.body.serviceid,
-          shop_id: req.body.shopid,
-          user_id: req.user.id
-        })
+        db.historyStatement
+          .create({
+            numberOfUser: req.body.numberofuser,
+            price: req.body.price,
+            startTime: req.body.starttime,
+            endTime: req.body.endtime,
+            date: req.body.date,
+            status: "waitingApprove",
+            paymentMethod: req.body.paymentmethod,
+            attend: "No",
+            paymentImage: `http://localhost:8080/${req.body.shopname}/payment/${paymentphotoname}`,
+            serviceName: req.body.servicename,
+            shopName: req.body.shopname,
+            service_id: req.body.serviceid,
+            shop_id: req.body.shopid,
+            user_id: req.user.id
+          })
           .then(() => {
-            res.status(200).json('payment complete')
+            res.status(200).json("payment complete");
           })
           .catch(err => {
-            res.status(400).json({ message: err.message })
-          })
+            res.status(400).json({ message: err.message });
+          });
       }
     }
-  )
+  );
 
   app.get(
     "/getApproveList",
     passport.authenticate("jwt", { session: false }),
     async (req, res) => {
       if (req.user.roles === "seller") {
-          
         db.historyStatement
           .findAll({
             attributes: [
@@ -82,10 +89,9 @@ module.exports = (app, db) => {
         let targetReject = await db.historyStatement.findOne({
           where: { id: req.params.statementId }
         });
-        let RejectStatement = await targetReject.update({status:'Reject'});
+        let RejectStatement = await targetReject.update({ status: "Reject" });
         res.status(200).send("Reject success");
       } catch (err) {
-
         res.status(400).send({ message: err.message });
       }
     }
@@ -95,25 +101,28 @@ module.exports = (app, db) => {
     "/approve/:statementId",
     passport.authenticate("jwt", { session: false }),
     async (req, res) => {
-      try {
-        let targetApprove = await db.historyStatement.findOne({
-          where: { id: req.params.statementId,paymentMethod: 'payFullPrice'}
+
+
+      let targetApprove = await db.historyStatement.findOne({
+        where: { id: req.params.statementId, paymentMethod: "payFullPrice" }
+      });
+      if (targetApprove) {
+        let approveFullStatement = await targetApprove.update({
+          status: "Approve"
         });
-        let approveFullStatement = await targetApprove.update({status:'Approve'});
-
-        let targetApproveNotFull = await db.historyStatement.findOne({
-            where: { id: req.params.statementId,paymentMethod: 'pay30%'}
-          });
-          let approveNotFullStatement = await targetApproveNotFull.update({status:'Approve30%'});
-
 
         res.status(200).send("Approve success");
-      } catch (err) {
+      } else {
+        let targetApproveNotFull = await db.historyStatement.findOne({
+          where: { id: req.params.statementId, paymentMethod: "pay30" }
+        });
 
-        res.status(400).send({ message: err.message });
+        let approveNotFullStatement = await targetApproveNotFull.update({
+          status: "Approve30"
+        });
+
+        res.status(200).send("Approve success");
       }
     }
   );
-
-
-}
+};
