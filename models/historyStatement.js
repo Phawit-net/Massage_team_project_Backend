@@ -18,11 +18,11 @@ module.exports = (sequelize, DataTypes) => {
     status: {
       type: DataTypes.STRING(50),
       validate:{
-        isIn:[["waitingApprove", "Approve", "Approve30%","Reject"]]
+        isIn:[["waitingApprove", "Approve", "Approve30","Reject"]]
       }
     },
     paymentMethod: {
-      type: DataTypes.ENUM("pay30%", "payFullPrice")
+      type: DataTypes.ENUM("pay30", "payFullPrice")
     },
     attend: {
       type: DataTypes.ENUM("Yes", "No")
