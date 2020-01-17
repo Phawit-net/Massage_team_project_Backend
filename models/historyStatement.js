@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE
     },
     status: {
-      type: DataTypes.ENUM("waitingApprove", "Approve", "Approve30%")
+      type: DataTypes.ENUM("waitingApprove", "Approve", "Approve30%", "Reject")
     },
     paymentMethod: {
       type: DataTypes.ENUM("pay30%", "payFullPrice")
@@ -39,6 +39,10 @@ module.exports = (sequelize, DataTypes) => {
     historyStatement.belongsTo(models.shop, {
       onDelete: "CASCADE",
       foreignKey: "shop_id"
+    });
+    historyStatement.belongsTo(models.user, {
+      onDelete: "CASCADE",
+      foreignKey: "user_id"
     });
     
   };
