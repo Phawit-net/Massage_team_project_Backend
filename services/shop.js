@@ -79,7 +79,7 @@ module.exports = (app, db) => {
     }
   );
 
-  app.get("/searchshops", (req, res) => {
+  app.get("/searchShops", (req, res) => {
     db.shop
       .findAll({
         include: [
