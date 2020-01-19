@@ -41,7 +41,7 @@ module.exports = {
         Influences of the east are reflected within the décor of rich Thai silk, traditional wood carvings and gold murals,\
         all of which have been lovingly hand-selected to adorn the historical building, previously Turkish bath.\
         Thai Square Spa has sensitively refurbished the baths and will provide a luxurious and tranquil space, where the mind, body and spirit can relax and renew",
-        shopProfilePic: "",
+        shopProfilePic: "thaisquarespa/ThaiSquareApa.jpg",
         shopAccountNo: "",
         shopAccountName: "",
         createdAt: new Date(),
