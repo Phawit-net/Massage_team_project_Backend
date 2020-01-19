@@ -2,8 +2,8 @@ const nodemailer=require('nodemailer')
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'nuadthaijob@gmail.com', // your email
-      pass: 'codecamp4nuadthai' // your email password
+      user: 'nuadthaijob@gmail.com', 
+      pass: 'codecamp4nuadthai',
     }
   });
 module.exports=(app)=>{
