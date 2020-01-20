@@ -10,7 +10,7 @@ const shopService = require("./services/shop");
 const sericeService = require("./services/service");
 // const userService = require('./services/user');
 const userService = require("./services/user");
-
+const historyStatement = require("./services/historyStatement")
 const shopPicService = require("./services/shopPic");
 
 app.use(fileUpload({ createParentPath: true }));
@@ -28,7 +28,7 @@ require("./config/passport/passport");
 db.sequelize.sync({ force: false }).then(() => {
   shopService(app, db);
   sericeService(app, db);
-
+  historyStatement(app,db)
   userService(app, db);
   shopPicService(app, db);
 
