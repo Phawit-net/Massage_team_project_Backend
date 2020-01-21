@@ -12,6 +12,8 @@ const sericeService = require("./services/service");
 const userService = require("./services/user");
 const historyStatement = require("./services/historyStatement")
 const shopPicService = require("./services/shopPic");
+const ContactUsService =require("./services/ContactUs")
+
 
 app.use(fileUpload({ createParentPath: true }));
 
@@ -25,13 +27,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 require("./config/passport/passport");
 
-db.sequelize.sync({ alter: false  }).then(() => {
+
+db.sequelize.sync({ force: false }).then(() => {
   shopService(app, db);
   sericeService(app, db);
   historyStatement(app,db)
   userService(app, db);
   shopPicService(app, db);
-
+  ContactUsService(app)
 
 
 
