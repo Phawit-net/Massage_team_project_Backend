@@ -36,7 +36,7 @@ module.exports = (app, db) => {
             status: "waitingApprove",
             paymentMethod: req.body.paymentmethod,
             attend: "No",
-            paymentImage: `http://localhost:8080/${req.body.shopname}/payment/${paymentphotoname}`,
+            paymentImage: `${req.body.shopname}/payment/${paymentphotoname}`,
             serviceName: req.body.servicename,
             shopName: req.body.shopname,
             service_id: req.body.serviceid,
