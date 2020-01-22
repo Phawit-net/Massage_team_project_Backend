@@ -41,12 +41,20 @@ module.exports = (app, db) => {
             "shopName",
             [Sequelize.fn("count", Sequelize.col("shopName")), "count"]
           ],
-          where:{user_id:req.user.id},
+          where: {
+            user_id: req.user.id,
+            // status: { [Op.notLike]: "waitingApprove" }
+            status:{[Op.or]:[{
+              [Op.like]: 'Approve30'
+            },{
+              [Op.like]: 'Approve'
+            }]}
+          },
           group: ["shopName"],
           raw: true
         })
         .then(result => {
-          console.log(result)
+          console.log(result);
           res.status(201).send(result);
         })
         .catch(err => {
