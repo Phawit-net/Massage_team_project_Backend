@@ -2,7 +2,11 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const config = require('../config/passport/passport');
 const crypto =require('crypto')
+const bcrypt =require('bcryptjs')
+const BCRYPT_SALT_ROUNDS = 12;
 const mail =require('../config/mail/mail')
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
 module.exports = (app, db) => {
   app.post('/registerUser', (req, res, next) => {
     passport.authenticate('register', (err, user, info) => {
@@ -102,7 +106,7 @@ module.exports = (app, db) => {
         })
     })
    
-   app.post('/forgetpassword',(req,res,next)=>{
+   app.post('/forgetpassword',(req,res)=>{
      db.user.findOne({
        where:{
          email:req.body.email
@@ -127,7 +131,7 @@ module.exports = (app, db) => {
             if(err){
               res.status(400).send({message:err.message})
             }else{
-              res.status(200).send('email has been sent')
+              res.status(200).send('email has been sent, please check your email')
             }
           })
        }
@@ -138,9 +142,7 @@ module.exports = (app, db) => {
         db.user.findOne({
           where:{
             resetPasswordToken:req.query.resetPasswordToken,
-            resetPasswordExpires:{
-              $gt:Date.now(),
-            }
+            resetPasswordExpires:{[Op.gt]:Date.now()}
           }
         }).then(result=>{
           if(result==null){
@@ -152,6 +154,34 @@ module.exports = (app, db) => {
             })
           }
         })
+  })
+   
+  app.post('/resetpassword',(req,res)=>{
+       db.user.findOne({
+         where:{
+           username:req.body.username
+         }
+       }).then(async(result)=>{
+         if(user!==null){
+           console.log('user exist in db');
+            let hashedpassword= await bcrypt.hash(req.body.newpassword,BCRYPT_SALT_ROUNDS)
+            db.user.update({
+              password:hashedpassword,
+              resetPasswordToken:null,
+              resetPasswordExpires:null
+            },{
+              where:{username:req.body.username}
+            }
+            )
+            .then(()=>{
+                console.log('password is update');
+                res.status(200).send({message:'we have change your password'})
+            })
+         }else{
+           console.log('No user exist')
+           res.status(404).send({message:'no user exist'})
+         }
+       })
   })
   }
 
