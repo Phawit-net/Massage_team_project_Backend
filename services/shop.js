@@ -146,22 +146,5 @@ module.exports = (app, db) => {
         res.status(400).json();
       });
   });
-
-  app.get("/shop", (req, res) => {
-    db.shop
-      .findOne({
-        where: { id: req.query.id },
-        include: [
-          {
-            model: db.service
-          }
-        ]
-      })
-      .then(result => {
-        res.status(200).json(result);
-      })
-      .catch(err => {
-        res.status(400).json(err);
-      });
-  });
+  
 };
