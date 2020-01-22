@@ -162,7 +162,7 @@ module.exports = (app, db) => {
            username:req.body.username
          }
        }).then(async(result)=>{
-         if(user!==null){
+         if(result!==null){
            console.log('user exist in db');
             let hashedpassword= await bcrypt.hash(req.body.newpassword,BCRYPT_SALT_ROUNDS)
             db.user.update({
