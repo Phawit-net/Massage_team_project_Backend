@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const config = require('../config/passport/passport');
-
-
+const crypto =require('crypto')
+const mail =require('../config/mail/mail')
 module.exports = (app, db) => {
   app.post('/registerUser', (req, res, next) => {
     passport.authenticate('register', (err, user, info) => {
@@ -101,7 +101,38 @@ module.exports = (app, db) => {
           res.status(400).json()
         })
     })
-
+   
+   app.post('/forgetpassword',(req,res,next)=>{
+     db.user.findOne({
+       where:{
+         email:req.body.email
+       }
+     }).then(result=>{
+       if(result==null){
+         console.log('email not in database')
+         res.status(403).send('email not in db')
+       }else{
+           const token = crypto.randomBytes(20).toString('hex');
+           db.user.update(
+          {
+            resetPasswordToken: token,
+            resetPasswordExpires:Date.now()+900000
+          },
+           {where:{
+              email:req.body.email
+            }
+           });
+          let mailOption = mail.mailcreator('forgetpassword',req,token)
+          mail.transporter.sendMail(mailOption,function(err,info){
+            if(err){
+              res.status(400).send({message:err.message})
+            }else{
+              res.status(200).send('email has been sent')
+            }
+          })
+       }
+     })
+   })
 }
 
 

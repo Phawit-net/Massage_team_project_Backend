@@ -1,21 +1,8 @@
-const nodemailer=require('nodemailer')
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'nuadthaijob@gmail.com', 
-      pass: 'codecamp4nuadthai',
-    }
-  });
+const mail =require('../config/mail/mail')
 module.exports=(app)=>{
-    app.post('/contact',(req,res)=>{
-         let mailOptions = {
-        from: `${req.body.sender}`,                
-        to: `${req.body.receiver}`,               
-        subject: `${req.body.title}`,           
-        html: `<h2>${req.body.sender}</h2>
-               <h3>${req.body.message}</h3>` 
-      };
-      transporter.sendMail(mailOptions,function(err,info){
+    app.post('/contact',async(req,res)=>{
+         let mailOptions = await mail.mailcreator('contactus',req)
+          mail.transporter.sendMail(mailOptions,function(err,info){
           if(err){
               res.status(400).send({message:err.message})
           }
