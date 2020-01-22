@@ -133,6 +133,26 @@ module.exports = (app, db) => {
        }
      })
    })
-}
+
+  app.get('/checkresetpasswordtimeout',(req,res)=>{
+        db.user.findOne({
+          where:{
+            resetPasswordToken:req.query.resetPasswordToken,
+            resetPasswordExpires:{
+              $gt:Date.now(),
+            }
+          }
+        }).then(result=>{
+          if(result==null){
+            res.status(200).send('timeout')
+          }else{
+            res.status(200).send({
+              username:result.username,
+              message:'success'
+            })
+          }
+        })
+  })
+  }
 
 
