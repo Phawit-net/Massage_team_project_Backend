@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     shop.associate = models => {
       shop.hasMany(models.shopPic, { onDelete: "CASCADE", foreignKey: "shop_id" });
       shop.hasMany(models.service, { onDelete: "CASCADE", foreignKey: "shop_id" });
-
+      shop.hasOne(models.address, { onDelete: "CASCADE", foreignKey: "shop_id" });
       shop.hasMany(models.historyStatement, {
         onDelete: "CASCADE",
         foreignKey: "shop_id"
