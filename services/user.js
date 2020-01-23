@@ -114,7 +114,7 @@ module.exports = (app, db) => {
      }).then(result=>{
        if(result==null){
          console.log('email not in database')
-         res.status(403).send('email not in db')
+         res.status(203).send('email not found')
        }else{
            const token = crypto.randomBytes(20).toString('hex');
            db.user.update(
