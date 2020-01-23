@@ -12,7 +12,7 @@ const sericeService = require("./services/service");
 const userService = require("./services/user");
 const historyStatement = require("./services/historyStatement")
 const shopPicService = require("./services/shopPic");
-const ContactUsService =require("./services/ContactUs")
+const ContactUsService = require("./services/ContactUs")
 
 
 app.use(fileUpload({ createParentPath: true }));
@@ -31,12 +31,10 @@ require("./config/passport/passport");
 db.sequelize.sync({ force: false }).then(() => {
   shopService(app, db);
   sericeService(app, db);
-  historyStatement(app,db)
+  historyStatement(app, db)
   userService(app, db);
   shopPicService(app, db);
   ContactUsService(app)
-
-
 
   app.get('/protected', passport.authenticate('jwt', { session: false }),
     function (req, res) {
