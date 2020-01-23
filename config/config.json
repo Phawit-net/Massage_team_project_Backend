@@ -1,11 +1,7 @@
 {
   "development": {
     "username": "root",
-<<<<<<< HEAD
     "password": "tak5936609",
-=======
-    "password": "OHM071038ohm",
->>>>>>> ab30179ebec2f70b6846d608bb1eda4821045025
     "database": "massage_dev",
     "host": "127.0.0.1",
     "dialect": "mysql",
