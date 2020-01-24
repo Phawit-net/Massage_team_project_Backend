@@ -86,6 +86,7 @@ module.exports = (app, db) => {
           if (!req.files) {
           } else {
             const picture = req.files.photoPost;
+            //console.log(picture);
             const pictureName = `${shopName}/${new Date().getTime()}.jpeg`;
             await picture.mv(`./image/` + pictureName);
             db.shop
