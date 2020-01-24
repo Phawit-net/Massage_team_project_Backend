@@ -177,6 +177,7 @@ module.exports = (app, db) => {
 
           } else {
             const picture = req.files.photoPost;
+            //console.log(picture);
             const pictureName = `${shopName}/${new Date().getTime()}.jpeg`;
             await picture.mv(`./image/` + pictureName);
             // console.log(req.body.latitude, req.body.longitude)
