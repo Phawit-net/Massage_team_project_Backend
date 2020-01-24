@@ -24,7 +24,7 @@ module.exports = {
         stretching movements using palms, thumbs, elbows and knees and the application of warmed Dosha oils. An invigorating, \
         rhythmic massage, it follows the style of traditional Thai massage. This massage follows eastern and \
         Ayurvedic traditions adapted perfectly for the western environment.",
-        serviceProfilePic: "nuadthai/Full body Thai oil massage/tm0024-500x334.png",
+        serviceProfilePic: "nuadthai/Full body Thai oil massage/Thai-oil-massage.jpg",
         time: 2,
         price: 92,
         createdAt: new Date(),
@@ -44,8 +44,9 @@ module.exports = {
       },
       {
         serviceName: "Upper Body massage (Head Massage)",
-        serviceDescription: "A great way to get rid of a headache and any tension around the head.",
-        serviceProfilePic: "nuadthai/Upper Body massage (Head Massage)/head massage.jpg",
+        serviceDescription: "A great way to get rid of a headache and any tension around the head. A Head Massage to have our therapist to work on \
+        this part of your body and make you feel better and relaxed",
+        serviceProfilePic: "nuadthai/Upper Body massage (Head Massage)/head-massage.jpg",
         time: 30,
         price: 38,
         createdAt: new Date(),
@@ -58,7 +59,7 @@ module.exports = {
         Through applying pressure and massaging these different points, \
         Reflexology is a great way to reduce stress while helping the body’s own natural healing abilities to flourish. \
         Although it is a very relaxing service, please note that it is not uncommon to feel some minor discomfort on areas which are in need of attention.",
-        serviceProfilePic: "nuadthai/Foot Reflexology/foot reflexology.png",
+        serviceProfilePic: "nuadthai/Foot Reflexology/foot-reflexology.jpg",
         time: 1,
         price: 59,
         createdAt: new Date(),
@@ -71,7 +72,7 @@ module.exports = {
         Not only it helps relieve the tension in the lower parts of the leg, this ancient massage is believed to help \
         promote oxygenation of tissues of several major organs of the body by focusing on the reflex zones of the feet that correspond to them. \
         Other benefits include improved circulation, ease of pain and treatment of ranges of acute and chronic illnesses.",
-        serviceProfilePic: "letsrelaxspa/Foot Massage/benefits-of-foot-massage.png",
+        serviceProfilePic: "letsrelaxspa/Foot Massage/benefits-of-foot-massage.jpg",
         time: 45,
         price: 450,
         createdAt: new Date(),
@@ -131,7 +132,7 @@ module.exports = {
         serviceDescription: "This spa treatment exfoliates the dead skin cells using various combination of sea salt, essential oils, water, skin brush, or loofah. \
         Guest can choose from the selection of 6 types of scrub that best suited with their type of skin. \
         The treatment is found to nourish the skin, improve circulation, cleanse and tone even the most sensitive skin.",
-        serviceProfilePic: "thaisquarespa/Body Scrub/Body Scrub.jpg",
+        serviceProfilePic: "thaisquarespa/Body Scrub/Body-Scrub.jpg",
         time: 1,
         price: 1200,
         createdAt: new Date(),
@@ -166,7 +167,7 @@ module.exports = {
         serviceName: "Thai Herbal Steam",
         serviceDescription: "Thai Herbal Steam Sauna is a treatment which uses steaming with herbs. It is believed to soften the skin, \
         helps cleanse body impurities and relax the muscles. The treatment is usually followed by a cold plunge or shower to restimulate the whole body.",
-        serviceProfilePic: "thaisquarespa/Thai Herbal Steam/HerbalSteam.png",
+        serviceProfilePic: "thaisquarespa/Thai Herbal Steam/HerbalSteam.jpg",
         time: 30,
         price: 500,
         createdAt: new Date(),

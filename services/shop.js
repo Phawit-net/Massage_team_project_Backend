@@ -44,11 +44,13 @@ module.exports = (app, db) => {
           where: {
             user_id: req.user.id,
             // status: { [Op.notLike]: "waitingApprove" }
-            status:{[Op.or]:[{
-              [Op.like]: 'Approve30'
-            },{
-              [Op.like]: 'Approve'
-            }]}
+            status: {
+              [Op.or]: [{
+                [Op.like]: 'Approve30'
+              }, {
+                [Op.like]: 'Approve'
+              }]
+            }
           },
           group: ["shopName"],
           raw: true
@@ -198,5 +200,22 @@ module.exports = (app, db) => {
         res.status(400).json();
       });
   });
-  
+
+  app.get("/shop", (req, res) => {
+    db.shop
+      .findOne({
+        where: { id: req.query.id },
+        include: [
+          {
+            model: db.service
+          }
+        ]
+      })
+      .then(result => {
+        res.status(200).json(result);
+      })
+      .catch(err => {
+        res.status(400).json(err);
+      });
+  });
 };
