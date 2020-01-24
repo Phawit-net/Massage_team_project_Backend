@@ -36,7 +36,7 @@ module.exports = {
         serviceDescription: "This massage involves the upper back, shoulders, neck, head and face. Head massage provide relief from aches and \
         pains and stress symptoms, promotes hair growth, soothes, comforts and re- balances skin while providing a sense of deep calmness and tranquility.",
         serviceProfilePic: "nuadthai/Upper Body massage (Head, Back, Neck & Shoulders)/thai-shoulder-massage.jpg",
-        time: 45,
+        time: 1,
         price: 49,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -47,7 +47,7 @@ module.exports = {
         serviceDescription: "A great way to get rid of a headache and any tension around the head. A Head Massage to have our therapist to work on \
         this part of your body and make you feel better and relaxed",
         serviceProfilePic: "nuadthai/Upper Body massage (Head Massage)/head-massage.jpg",
-        time: 30,
+        time: 1,
         price: 38,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -73,7 +73,7 @@ module.exports = {
         promote oxygenation of tissues of several major organs of the body by focusing on the reflex zones of the feet that correspond to them. \
         Other benefits include improved circulation, ease of pain and treatment of ranges of acute and chronic illnesses.",
         serviceProfilePic: "letsrelaxspa/Foot Massage/benefits-of-foot-massage.jpg",
-        time: 45,
+        time: 1,
         price: 450,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -85,7 +85,7 @@ module.exports = {
         Similar to foot reflexology, this is an ancient method of massaging reflex zones of the hands that correspond to individual parts of the body to \
         help promote oxygenation of tissues, improve blood circulation, ease pain and treat a wide range of acute and chronic illnesses",
         serviceProfilePic: "letsrelaxspa/Hand Massage/hand-massages.jpg",
-        time: 15,
+        time: 1,
         price: 150,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -109,7 +109,7 @@ module.exports = {
         Guests get to sits on a specially designed massage chair that gives full comfort after the massage. The treatment is good for jet lags, \
         eases strain and tension, mobilizes stiff joints, and improves blood circulation. A great treat after a long day of office work.",
         serviceProfilePic: "letsrelaxspa/Back & Shoulder Massage/masajes.jpg",
-        time: 30,
+        time: 1,
         price: 350,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -168,7 +168,7 @@ module.exports = {
         serviceDescription: "Thai Herbal Steam Sauna is a treatment which uses steaming with herbs. It is believed to soften the skin, \
         helps cleanse body impurities and relax the muscles. The treatment is usually followed by a cold plunge or shower to restimulate the whole body.",
         serviceProfilePic: "thaisquarespa/Thai Herbal Steam/HerbalSteam.jpg",
-        time: 30,
+        time: 1,
         price: 500,
         createdAt: new Date(),
         updatedAt: new Date(),
