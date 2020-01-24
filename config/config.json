@@ -1,7 +1,11 @@
 {
   "development": {
     "username": "root",
+<<<<<<< HEAD
     "password": "44121863",
+=======
+    "password": "OHM071038ohm",
+>>>>>>> develop
     "database": "massage_dev",
     "host": "127.0.0.1",
     "dialect": "mysql",

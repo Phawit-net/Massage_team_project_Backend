@@ -44,11 +44,13 @@ module.exports = (app, db) => {
           where: {
             user_id: req.user.id,
             // status: { [Op.notLike]: "waitingApprove" }
-            status:{[Op.or]:[{
-              [Op.like]: 'Approve30'
-            },{
-              [Op.like]: 'Approve'
-            }]}
+            status: {
+              [Op.or]: [{
+                [Op.like]: 'Approve30'
+              }, {
+                [Op.like]: 'Approve'
+              }]
+            }
           },
           group: ["shopName"],
           raw: true
@@ -89,6 +91,7 @@ module.exports = (app, db) => {
             //console.log(picture);
             const pictureName = `${shopName}/${new Date().getTime()}.jpeg`;
             await picture.mv(`./image/` + pictureName);
+            // console.log(req.body.latitude, req.body.longitude)
             db.shop
               .update(
                 {
@@ -97,10 +100,53 @@ module.exports = (app, db) => {
                   shopAccountName: req.body.shopAccountName,
                   shopProfilePic: `${pictureName}`
                 },
-                { where: { id: req.user.id } }
+                { where: { user_id: req.user.id } }
               )
-              .then(result => {
-                res.status(200).json(result);
+              .then(async () => {
+                const foundShop = await db.shop.findOne(
+                  {
+                    attributes: ['id'],
+                    where: { user_id: req.user.id }
+                  }
+                )
+                const foundAddress = await db.address.findOne(
+                  {
+                    attributes: ['id'],
+                    where: { shop_id: foundShop.dataValues.id }
+                  }
+                )
+                if (!foundAddress) {
+                  db.address.create(
+                    {
+                      latitude: req.body.latitude,
+                      longitude: req.body.longitude,
+                      address: req.body.address,
+                      shop_id: result.dataValues.id
+                    },
+                    { where: { shop_id: result.dataValues.id } }
+                  )
+                    .then(result => {
+                      res.status(200).send(result);
+                    })
+                    .catch(error => {
+                      res.status(400).json({ message: error.message });
+                    });
+                }
+                db.address.update(
+                  {
+                    latitude: req.body.latitude,
+                    longitude: req.body.longitude,
+                    address: req.body.address,
+                  },
+                  { where: { shop_id: result.dataValues.id } }
+                )
+                  .then(result => {
+                    res.status(200).send(result);
+                  })
+                  .catch(error => {
+                    res.status(400).json({ message: error.message });
+                  });
+
               })
               .catch(error => {
                 res.status(400).json({ message: error.message });
