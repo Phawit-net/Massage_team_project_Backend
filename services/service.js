@@ -148,4 +148,23 @@ module.exports = (app, db) => {
         res.send(result);
       });
   });
+
+  app.get(
+    "/servicePic",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+      db.service
+        .findOne({ where: { id: req.user.id } })
+        .then(result => {
+          res.status(201).json(result);
+        })
+        .catch(err => {
+          res.status(400).json();
+        });
+    }
+  );
+
+
 };
+
+

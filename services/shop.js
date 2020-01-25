@@ -44,11 +44,13 @@ module.exports = (app, db) => {
           where: {
             user_id: req.user.id,
             // status: { [Op.notLike]: "waitingApprove" }
-            status:{[Op.or]:[{
-              [Op.like]: 'Approve30'
-            },{
-              [Op.like]: 'Approve'
-            }]}
+            status: {
+              [Op.or]: [{
+                [Op.like]: 'Approve30'
+              }, {
+                [Op.like]: 'Approve'
+              }]
+            }
           },
           group: ["shopName"],
           raw: true

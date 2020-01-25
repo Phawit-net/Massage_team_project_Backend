@@ -23,6 +23,12 @@ module.exports = (sequelize, DataTypes) => {
     },
     photoProfile: {
       type: DataTypes.STRING(255)
+    },
+    resetPasswordToken:{
+      type:DataTypes.STRING(255)
+    },
+    resetPasswordExpires:{
+      type:DataTypes.BIGINT
     }
   });
 
