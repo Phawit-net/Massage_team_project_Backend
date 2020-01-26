@@ -165,8 +165,6 @@ module.exports = (app, db) => {
             attributes: ["picName"]
           }
         ],
-        limit: 3,
-        offset: (req.query.page - 1) * 3,
         where: {
           shopName: {
             [Op.substring]: `%${req.query.keyword}`
