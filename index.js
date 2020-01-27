@@ -36,7 +36,7 @@ db.sequelize.sync({ alter: false }).then(() => {
   shopPicService(app, db);
   ContactUsService(app)
   addressService(app, db)
-  
+
   app.get('/protected', passport.authenticate('jwt', { session: false }),
     function (req, res) {
       res.send(req.user);
