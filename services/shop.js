@@ -150,6 +150,7 @@ module.exports = (app, db) => {
               .update(
                 {
                   shopDescription: req.body.shopDescription,
+                  shopBank: req.body.shopBank,
                   shopAccountNo: req.body.shopAccountNo,
                   shopAccountName: req.body.shopAccountName,
                   shopProfilePic: `${pictureName}`
