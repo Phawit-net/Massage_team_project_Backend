@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "Xialmiao1.",
+    "password": "123456",
     "database": "massage_dev",
     "host": "127.0.0.1",
     "dialect": "mysql",
