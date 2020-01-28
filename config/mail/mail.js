@@ -29,5 +29,7 @@ exports.mailcreator = (type,req,token) => {
                       `http://localhost:3000/resetpassword/${token}\n\n`+
                       'if you did not request this, please ignore this email and your password will remain unchanged.\n'
             }
+            default:
+                return ''
     }
 }
