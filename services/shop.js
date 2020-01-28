@@ -65,6 +65,40 @@ module.exports = (app, db) => {
     }
   );
 
+  app.get(
+    "/getServiceUsage",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+      db.historyStatement
+        .findAll({
+          attributes: [
+            "serviceName",
+            [Sequelize.fn("count", Sequelize.col("serviceName")), "count"]
+          ],
+          where: {
+            shop_id: req.user.id,
+            // status: { [Op.notLike]: "waitingApprove" }
+            status: {
+              [Op.or]: [{
+                [Op.like]: 'Approve30'
+              }, {
+                [Op.like]: 'Approve'
+              }]
+            }
+          },
+          group: ["serviceName"],
+          raw: true
+        })
+        .then(result => {
+          console.log(result);
+          res.status(201).send(result);
+        })
+        .catch(err => {
+          res.status(400).json();
+        });
+    }
+  );
+
   app.put(
     "/updateShop",
     passport.authenticate("jwt", { session: false }),
