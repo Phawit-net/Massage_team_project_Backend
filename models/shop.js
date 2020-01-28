@@ -15,7 +15,9 @@ module.exports = (sequelize, DataTypes) => {
       shopAccountName:{
           type:DataTypes.STRING(255)
       },
-      
+      shopBank:{
+         type:DataTypes.STRING(255)
+      }
     });
   
     shop.associate = models => {
