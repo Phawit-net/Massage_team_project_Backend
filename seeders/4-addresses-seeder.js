@@ -5,7 +5,7 @@ module.exports = {
 
     return queryInterface.bulkInsert('addresses', [
       {
-        address:"248 ถนน พระสุเมรุ แขวง วัดบวรนิเวศ เขตพระนคร กรุงเทพมหานคร 10200",
+        address:"229-237 Thanon Phra Sumen, Khwaeng Talat Yot, Khet Phra Nakhon, Krung Thep Maha Nakhon 10200",
         latitude:13.761339,
         longitude:100.499360,
         shop_id:1,
@@ -13,7 +13,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        address:"ปาก อิสรภาพ29 แขวง วัดท่าพระ เขตบางกอกใหญ่ กรุงเทพมหานคร 10600",
+        address:"Itsaraphap 29, Wat Tha Phra, Bangkok Yai, Bangkok 10600",
         latitude:13.741197,
         longitude:100.483214,
         shop_id:2,
@@ -21,7 +21,7 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        address:"180-584 ถนน เพชรเกษม แขวง หลักสอง เขตบางแค กรุงเทพมหานคร 10160",
+        address:"Thanon Phet Kasem, Lak Song, Khet Bang Khae, Krung Thep Maha Nakhon 10160",
         latitude:13.709637,
         longitude:100.397111,
         shop_id:3,
