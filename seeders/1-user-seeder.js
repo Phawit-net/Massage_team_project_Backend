@@ -43,6 +43,19 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        id: 4,
+        username: "admin",
+        password: "$2a$12$y5Z67Sji59v4Kzg0YawhjOndIlyXNJA.9haPFAvupPnGzA2HMzg7O",
+        roles: "admin",
+        firstname: "admin",
+        lastname: "massage",
+        email: "admin@nuadthai.com",
+        tel: "0811114444",
+        photoProfile: "",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ], {});
 
   },
